@@ -27,7 +27,10 @@
                     {{user.name}}
                 </div>
                 <div class="w-full mt-0.5 whitespace-nowrap text-sm text-ellipsis overflow-hidden leading-normal text-current opacity-50">
-                    brian.hughes@company.com
+                    {{user?.email || 'brian.hughes@company.com'}}
+                </div>
+                <div class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary">
+                    {{user?.role}}
                 </div>
             </div>
         </div>

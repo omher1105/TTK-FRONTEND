@@ -3,6 +3,7 @@ import {AuthGuard} from 'app/core/auth/guards/auth.guard';
 import {NoAuthGuard} from 'app/core/auth/guards/noAuth.guard';
 import {LayoutComponent} from 'app/layout/layout.component';
 import {InitialDataResolver} from 'app/app.resolvers';
+import {EmpresaComponent} from './modules/admin/empresa/empresa.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -10,14 +11,14 @@ import {InitialDataResolver} from 'app/app.resolvers';
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/example'
-    {path: '', pathMatch: 'full', redirectTo: 'example'},
+    {path: '', pathMatch: 'full', redirectTo: 'empresa'},
 
-    // Redirect signed in user to the '/example'
+    // Redirect signed in user to the '/empresa'
     //
     // After the user signs in, the sign in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    {path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'example'},
+    {path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'empresa'},
 
     // Auth routes for guests
     {
@@ -51,7 +52,7 @@ export const appRoutes: Route[] = [
             {
                 path: 'registro', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module')
                     .then(m => m.AuthSignUpModule)
-            }
+            },
         ]
     },
 
@@ -88,6 +89,10 @@ export const appRoutes: Route[] = [
                 path: 'inicio',
                 loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)
             },
+            {
+                path: 'admision', loadChildren: () => import('app/modules/landing/admision/admision.module')
+                    .then(m => m.AdmisionModule)
+            }
         ]
     },
 
@@ -104,6 +109,27 @@ export const appRoutes: Route[] = [
             {
                 path: 'example',
                 loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)
+            },
+            {
+                path: 'empresa',
+                component: EmpresaComponent
+            },
+            {
+                path: 'solicitud',
+                loadChildren: () => import('app/modules/admin/solicitud/solicitud.module').then(m => m.SolicitudModule)
+            },
+            {
+                path: 'recursos-humanos',
+                children: [
+                    {
+                        path: 'admision',
+                        loadChildren: () => import('app/modules/admin/admision/admision.module').then(m => m.AdmisionModule)
+                    },
+                    {
+                        path: 'personal',
+                        loadChildren: () => import('app/modules/admin/personal/personal.module').then(m => m.PersonalModule)
+                    },
+                ]
             },
         ]
     },
