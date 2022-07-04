@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FiltersByPaginationComponent } from './components/filters-by-pagination/filters-by-pagination.component';
+import { PostulantInformationComponent } from './components/postulant-information/postulant-information.component';
+import { SliderInformationComponent } from './components/slider-information/slider-information.component';
+import { OfferInformationComponent } from './components/offer-information/offer-information.component';
 
 @NgModule({
     imports: [
@@ -12,6 +16,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         CommonModule,
         FormsModule,
         ReactiveFormsModule
+    ],
+    declarations: [
+      FiltersByPaginationComponent,
+      PostulantInformationComponent,
+      SliderInformationComponent,
+      OfferInformationComponent
     ]
 })
 export class SharedModule
