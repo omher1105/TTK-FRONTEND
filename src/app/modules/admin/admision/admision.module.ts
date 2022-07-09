@@ -8,6 +8,22 @@ import {ExamenMedicoComponent} from './containers/examen-medico/examen-medico.co
 import {EvaluacionesComponent} from './containers/evaluaciones/evaluaciones.component';
 import {RouterModule, Routes} from '@angular/router';
 import { ConfiguracionComponent } from './containers/configuracion/configuracion.component';
+import { OfferFiltersComponent } from './components/offer-filters/offer-filters.component';
+import { OfferActionsComponent } from './components/offer-actions/offer-actions.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatCardModule} from '@angular/material/card';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatMenuModule} from '@angular/material/menu';
+import { CreateOfferComponent } from './components/create-offer/create-offer.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const routes: Routes = [
     {
@@ -55,11 +71,30 @@ const routes: Routes = [
         EntrevistasComponent,
         ExamenMedicoComponent,
         EvaluacionesComponent,
-        ConfiguracionComponent
+        ConfiguracionComponent,
+        OfferFiltersComponent,
+        OfferActionsComponent,
+        CreateOfferComponent
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        MatButtonModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatPaginatorModule,
+        MatCardModule,
+        MatTooltipModule,
+        MatMenuModule,
+        MatDialogModule,
+    ],
+    entryComponents: [
+        CreateOfferComponent
     ]
 })
 export class AdmisionModule {

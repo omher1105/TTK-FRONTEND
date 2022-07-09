@@ -1,0 +1,42 @@
+<div class="flex flex-col w-full gap-4">
+    <h2 mat-dialog-title>Crear oferta laboral</h2>
+    <div mat-dialog-content>
+        <div class="flex flex-col" [formGroup]="formActions">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Título</mat-label>
+                <input
+                        matInput
+                        autocomplete="off"
+                        placeholder="Ingrese un título para la oferta"
+                        [formControlName]="'titulo'">
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Requisito</mat-label>
+                <textarea matInput
+                          autocomplete="off"
+                          placeholder="Ingrese una descripción de la oferta mínimo 50 caracteres máximo 1000 caracteres"
+                          formControlName="requisito"></textarea>
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput
+                          autocomplete="off"
+                          placeholder="Ingrese una descripción de la oferta mínimo 50 caracteres máximo 1000 caracteres"
+                          formControlName="descripcion"></textarea>
+            </mat-form-field>
+<!--            <mat-form-field class="fuse-mat-no-subscript fuse-mat-dense" appearance="outline">-->
+<!--                <mat-label>Cargo</mat-label>-->
+<!--                <mat-select formControlName="cargo" placeholder="Asociar cargo a la oferta">-->
+<!--                    <mat-option [value]="null">&#45;&#45;&#45;&#45;</mat-option>-->
+<!--                    <ng-container *ngFor="let option of []">-->
+<!--                        <mat-option [value]="option.id">{{ option.name }}</mat-option>-->
+<!--                    </ng-container>-->
+<!--                </mat-select>-->
+<!--            </mat-form-field>-->
+        </div>
+    </div>
+    <div class="flex flex-row-reverse gap-4" mat-dialog-actions>
+        <button mat-stroked-button color="primary">{{ isUpdated ? 'Actulizar oferta' : 'Crear oferta'}}</button>
+        <button mat-stroked-button mat-dialog-close cdkFocusInitial color="warn">Cancelar</button>
+    </div>
+</div>

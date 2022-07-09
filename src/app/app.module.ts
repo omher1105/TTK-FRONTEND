@@ -13,6 +13,9 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { EmpresaComponent } from './modules/admin/empresa/empresa.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -24,7 +27,7 @@ const routerConfig: ExtraOptions = {
         AppComponent,
         EmpresaComponent,
     ],
-    imports     : [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
@@ -41,7 +44,10 @@ const routerConfig: ExtraOptions = {
         LayoutModule,
 
         // 3rd party modules that require global configuration via forRoot
-        MarkdownModule.forRoot({})
+        MarkdownModule.forRoot({}),
+        MatNativeDateModule,
+        MatMomentDateModule,
+        NgxSpinnerModule
     ],
     bootstrap   : [
         AppComponent
