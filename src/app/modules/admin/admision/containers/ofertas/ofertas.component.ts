@@ -1,15 +1,75 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {BehaviorSubject, merge, Subject, switchMap, takeUntil} from 'rxjs';
+import {MatPaginator} from '@angular/material/paginator';
+import {OfertasService} from './ofertas.service';
+import {Oferta} from '../../admision.interface';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {FormUtils} from '../../../../../shared/utils/form.utils';
+import {CreateOfferComponent} from '../../components/create-offer/create-offer.component';
+import {MessageProviderService} from '../../../../../shared/services/message-provider.service';
 
 @Component({
-  selector: 'app-ofertas',
-  templateUrl: './ofertas.component.html',
-  styleUrls: ['./ofertas.component.scss']
+    selector: 'app-ofertas',
+    templateUrl: './ofertas.component.html',
+    styleUrls: ['./ofertas.component.scss']
 })
-export class OfertasComponent implements OnInit {
+export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor() { }
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngOnInit(): void {
-  }
+    dataSource: Oferta[] = [];
+    displayedColumns: string[] = ['estado', 'ofertas', 'postulantes', 'creador', 'fecha_publicacion', 'actions'];
+
+    count = 0;
+
+    changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    unsubscribe: Subject<void> = new Subject<void>();
+
+    constructor(
+        private _ngxSpinner: NgxSpinnerService,
+        private _messageProviderService: MessageProviderService,
+        private _offerService: OfertasService,
+    ) {
+    }
+
+    ngOnInit(): void {
+        this._offerService.eventCreate
+            .pipe(takeUntil(this.unsubscribe))
+            .subscribe(_ => this.createOrEditOffer());
+    }
+
+    ngAfterViewInit(): void {
+        this.paginator._intl.itemsPerPageLabel = 'Items por página.';
+
+        this.initPagination();
+    }
+
+    initPagination(): void {
+        merge(this.paginator.page, this.changesSubject, this._offerService.eventFilters)
+            .pipe(
+                switchMap(() => {
+                    this._ngxSpinner.show();
+                    const rawValue = this._offerService.eventFilters.value;
+                    const filters = rawValue ? FormUtils.deleteKeysNullInObject(rawValue) : null;
+                    const queryParamsByPaginator = {...filters} as any;
+                    queryParamsByPaginator.size = this.paginator.pageSize;
+                    queryParamsByPaginator.numpagina = this.paginator.pageIndex + 1;
+                    return this._offerService.getOffers(queryParamsByPaginator);
+                })
+            ).subscribe((response) => {
+            this._ngxSpinner.hide();
+            this.count = response.totalElements;
+            this.dataSource = response.result;
+        });
+    }
+
+    createOrEditOffer(): void {
+        this._messageProviderService.showModal(CreateOfferComponent, null);
+    }
+
+    ngOnDestroy(): void {
+        this.unsubscribe.next();
+        this.unsubscribe.complete();
+    }
 
 }
