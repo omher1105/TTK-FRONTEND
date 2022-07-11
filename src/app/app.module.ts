@@ -16,11 +16,17 @@ import { EmpresaComponent } from './modules/admin/empresa/empresa.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {BlockScrollStrategy, Overlay} from '@angular/cdk/overlay';
+import {MAT_SELECT_SCROLL_STRATEGY} from '@angular/material/select';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
     scrollPositionRestoration: 'enabled'
 };
+
+export function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
+    return () => overlay.scrollStrategies.block();
+}
 
 @NgModule({
     declarations: [
@@ -48,6 +54,9 @@ const routerConfig: ExtraOptions = {
         MatNativeDateModule,
         MatMomentDateModule,
         NgxSpinnerModule
+    ],
+    providers: [
+        { provide: MAT_SELECT_SCROLL_STRATEGY, useFactory: scrollFactory, deps: [Overlay] }
     ],
     bootstrap   : [
         AppComponent

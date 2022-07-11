@@ -27,9 +27,9 @@
                     <button mat-icon-button
                             [matTooltip]="element?.estado">
                         <mat-icon svgIcon="heroicons_outline:information-circle" [ngClass]="{
-                                'status-success': element.estado === 'ACTIVADA',
-                                'status-created': element.estado === 'CREADA',
-                                'status-warning': element.estado === 'DESACTIVADA'
+                                'status-success': element.estadoOferta?.id === 3,
+                                'status-created': element.estadoOferta?.id === 1,
+                                'status-warning': element.estadoOferta?.id === 4
                             }"></mat-icon>
                     </button>
                 </td>
@@ -56,7 +56,8 @@
             <!-- Symbol Column -->
             <ng-container matColumnDef="creador">
                 <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Creador</th>
-                <td mat-cell *matCellDef="let element"> {{element?.creador || '-'}} </td>
+                <td mat-cell
+                    *matCellDef="let element"> {{element?.creadorOferta?.nombre + ' ' + element?.creadorOferta?.apellido}} </td>
             </ng-container>
 
             <!-- Symbol Column -->
@@ -74,6 +75,18 @@
                             color="primary">
                         <mat-icon>more_vert</mat-icon>
                     </button>
+                    <mat-menu
+                            [xPosition]="'before'"
+                            #offerActions="matMenu">
+                        <button mat-menu-item
+                                (click)="createOrEditOffer(element)">
+                            Editar
+                        </button>
+                        <button mat-menu-item
+                                (click)="changeStatusOffer(element)">
+                            Cambiar estado
+                        </button>
+                    </mat-menu>
                 </td>
             </ng-container>
 
@@ -83,15 +96,3 @@
         </table>
     </section>
 </article>
-
-<mat-menu
-        [xPosition]="'before'"
-        #offerActions="matMenu">
-    <button mat-menu-item
-            (click)="createOrEditOffer()">
-        Editar
-    </button>
-    <button mat-menu-item>
-        Cambiar estado
-    </button>
-</mat-menu>

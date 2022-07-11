@@ -15,3 +15,22 @@ export interface IDialogData<T> {
     meta: T;
     savedState?: boolean;
 }
+
+export interface Estado {
+    id: number;
+    estado: string;
+}
+
+export interface Encargado {
+    id: number;
+    nombre: string;
+    apellido: string;
+    email: string;
+    telefono: string;
+}
+
+export interface Cargo {
+    id: number;
+    nombreCargo: string;
+    descripcion: string;
+}

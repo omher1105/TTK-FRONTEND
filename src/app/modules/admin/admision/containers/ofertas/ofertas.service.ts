@@ -24,4 +24,11 @@ export class OfertasService {
         return this._httpClient.get<IPagination<Oferta>>(`${this.apiUrl}oferta/lista`, {params: queryParams});
     }
 
+    createOffer(payload): Observable<any> {
+        return this._httpClient.put<any>(`${this.apiUrl}oferta/crear`, payload);
+    }
+
+    updateOffer(payload): Observable<any> {
+        return this._httpClient.patch<any>(`${this.apiUrl}oferta/actualizar/${payload.id}`, payload);
+    }
 }

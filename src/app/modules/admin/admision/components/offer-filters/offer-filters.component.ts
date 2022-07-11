@@ -1,8 +1,10 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, UntypedFormBuilder} from '@angular/forms';
 import {OfertasService} from '../../containers/ofertas/ofertas.service';
-import {debounceTime, Subject, takeUntil} from 'rxjs';
+import {debounceTime, Observable, Subject, takeUntil} from 'rxjs';
 import moment from 'moment';
+import {Encargado, Estado} from '../../../../../shared/interfaces/common.interface';
+import {CommonService} from '../../../../../shared/services/common.service';
 
 @Component({
     selector: 'app-offer-filters',
@@ -13,22 +15,22 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
 
     formFilters: FormGroup;
 
-    status = [
-        {id: 1, name: 'DESACTIVADA'},
-        {id: 2, name: 'ACTIVADA'},
-        {id: 3, name: 'CREADA'},
-    ];
+    status$: Observable<Estado[]>;
+    employees$: Observable<Encargado[]>;
 
     unsubscribe: Subject<void> = new Subject<void>();
 
     constructor(
         private _fb: UntypedFormBuilder,
+        private _commonService: CommonService,
         private _offerService: OfertasService,
     ) {
         this.createFormFilters();
     }
 
     ngOnInit(): void {
+        this.status$ = this._commonService.getStatus();
+        this.employees$ = this._commonService.getEmployees();
     }
 
     ngAfterViewInit(): void {

@@ -7,6 +7,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {FormUtils} from '../../../../../shared/utils/form.utils';
 import {CreateOfferComponent} from '../../components/create-offer/create-offer.component';
 import {MessageProviderService} from '../../../../../shared/services/message-provider.service';
+import {ChangeStatusComponent} from '../../components/change-status/change-status.component';
 
 @Component({
     selector: 'app-ofertas',
@@ -63,8 +64,34 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
         });
     }
 
-    createOrEditOffer(): void {
-        this._messageProviderService.showModal(CreateOfferComponent, null);
+    createOrEditOffer(element?): void {
+        const dialogData = {
+            data: {
+                meta: element
+            },
+            width: '30vw',
+            disableClose: true
+        };
+
+        const dialogRef = this._messageProviderService.showModal(CreateOfferComponent, dialogData);
+        dialogRef.afterClosed().subscribe(_ => {
+            this.changesSubject.next(true);
+        });
+    }
+
+    changeStatusOffer(element?): void {
+        const dialogData = {
+            data: {
+                meta: element
+            },
+            width: '30vw',
+            disableClose: true
+        };
+
+        const dialogRef = this._messageProviderService.showModal(ChangeStatusComponent, dialogData);
+        dialogRef.afterClosed().subscribe(_ => {
+            this.changesSubject.next(true);
+        });
     }
 
     ngOnDestroy(): void {
