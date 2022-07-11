@@ -24,6 +24,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatMenuModule} from '@angular/material/menu';
 import { CreateOfferComponent } from './components/create-offer/create-offer.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ChangeStatusComponent } from './components/change-status/change-status.component';
 
 const routes: Routes = [
     {
@@ -74,7 +75,8 @@ const routes: Routes = [
         ConfiguracionComponent,
         OfferFiltersComponent,
         OfferActionsComponent,
-        CreateOfferComponent
+        CreateOfferComponent,
+        ChangeStatusComponent
     ],
     imports: [
         CommonModule,
@@ -94,7 +96,8 @@ const routes: Routes = [
         MatDialogModule,
     ],
     entryComponents: [
-        CreateOfferComponent
+        CreateOfferComponent,
+        ChangeStatusComponent
     ]
 })
 export class AdmisionModule {

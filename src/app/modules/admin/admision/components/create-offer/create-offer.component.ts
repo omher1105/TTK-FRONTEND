@@ -79,10 +79,11 @@ export class CreateOfferComponent implements OnInit {
   async evaluateTransaction(payload) {
     try {
       await this.createOrUpdateOffer(payload).toPromise();
-      this._ngxSpinner.hide();
       this.dialogRef.close();
     } catch (err) {
       throw new Error(err);
+    } finally {
+      this._ngxSpinner.hide();
     }
   }
 
