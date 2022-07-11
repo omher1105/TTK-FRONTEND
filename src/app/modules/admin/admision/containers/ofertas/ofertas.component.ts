@@ -63,8 +63,19 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
         });
     }
 
-    createOrEditOffer(): void {
-        this._messageProviderService.showModal(CreateOfferComponent, null);
+    createOrEditOffer(element?): void {
+        const dialogData = {
+            data: {
+                meta: element
+            },
+            width: '30vw',
+            disableClose: true
+        };
+
+        const dialogRef = this._messageProviderService.showModal(CreateOfferComponent, dialogData);
+        dialogRef.afterClosed().subscribe(_ => {
+            this.changesSubject.next(true);
+        });
     }
 
     ngOnDestroy(): void {
