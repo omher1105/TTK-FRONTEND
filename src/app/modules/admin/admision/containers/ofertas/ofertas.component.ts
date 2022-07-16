@@ -8,6 +8,7 @@ import {FormUtils} from '../../../../../shared/utils/form.utils';
 import {CreateOfferComponent} from '../../components/create-offer/create-offer.component';
 import {MessageProviderService} from '../../../../../shared/services/message-provider.service';
 import {ChangeStatusComponent} from '../../components/change-status/change-status.component';
+import {AdmisionService} from '../../admision.service';
 
 @Component({
     selector: 'app-ofertas',
@@ -30,7 +31,9 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
         private _ngxSpinner: NgxSpinnerService,
         private _messageProviderService: MessageProviderService,
         private _offerService: OfertasService,
+        private _admisionService: AdmisionService,
     ) {
+        this._admisionService.title.next('Ofertas');
     }
 
     ngOnInit(): void {
@@ -40,6 +43,7 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit(): void {
+
         this.paginator._intl.itemsPerPageLabel = 'Items por página.';
 
         this.initPagination();
