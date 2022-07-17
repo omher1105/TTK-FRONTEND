@@ -24,6 +24,14 @@ export class OfertasService {
         return this._httpClient.get<IPagination<Oferta>>(`${this.apiUrl}oferta/lista`, {params: queryParams});
     }
 
+    getOffersByFilters(queryParams = null): Observable<IPagination<Oferta>> {
+        queryParams.search = queryParams?.search || '';
+        queryParams.creadorOferta = queryParams?.creadorOferta || '';
+        queryParams.estadoOferta = queryParams?.estadoOferta || '';
+        queryParams.fechaPublicacion = queryParams?.fechaPublicacion || '';
+        return this._httpClient.get<IPagination<Oferta>>(`${this.apiUrl}oferta/lista/filtrada`, {params: queryParams});
+    }
+
     createOffer(payload): Observable<any> {
         return this._httpClient.put<any>(`${this.apiUrl}oferta/crear`, payload);
     }

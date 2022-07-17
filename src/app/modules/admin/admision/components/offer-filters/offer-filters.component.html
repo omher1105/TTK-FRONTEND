@@ -10,7 +10,7 @@
     </mat-form-field>
     <mat-form-field class="fuse-mat-no-subscript fuse-mat-dense" appearance="fill">
         <mat-label>Estado de la oferta</mat-label>
-        <mat-select formControlName="estado" placeholder="Estado de la oferta">
+        <mat-select formControlName="estadoOferta" placeholder="Estado de la oferta">
             <mat-option [value]="null">----</mat-option>
             <ng-container *ngFor="let option of status$ | async">
                 <mat-option [value]="option.id">{{ option.estado }}</mat-option>
@@ -19,7 +19,7 @@
     </mat-form-field>
     <mat-form-field class="fuse-mat-no-subscript fuse-mat-dense" appearance="fill">
         <mat-label>Creador de la oferta</mat-label>
-        <mat-select formControlName="creador" placeholder="Creador de la oferta">
+        <mat-select formControlName="creadorOferta" placeholder="Creador de la oferta">
             <mat-option [value]="null">----</mat-option>
             <ng-container *ngFor="let option of employees$ | async">
                 <mat-option [value]="option.id">{{ option?.nombre + ' ' + option?.apellido }}</mat-option>

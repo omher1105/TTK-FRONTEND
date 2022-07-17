@@ -18,6 +18,8 @@ import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {BlockScrollStrategy, Overlay} from '@angular/cdk/overlay';
 import {MAT_SELECT_SCROLL_STRATEGY} from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -53,7 +55,9 @@ export function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
         MarkdownModule.forRoot({}),
         MatNativeDateModule,
         MatMomentDateModule,
-        NgxSpinnerModule
+        NgxSpinnerModule,
+        MatCardModule,
+        MatChipsModule
     ],
     providers: [
         { provide: MAT_SELECT_SCROLL_STRATEGY, useFactory: scrollFactory, deps: [Overlay] }
