@@ -25,6 +25,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { CreateOfferComponent } from './components/create-offer/create-offer.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ChangeStatusComponent } from './components/change-status/change-status.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 const routes: Routes = [
     {
@@ -94,6 +95,7 @@ const routes: Routes = [
         MatTooltipModule,
         MatMenuModule,
         MatDialogModule,
+        MatSidenavModule,
     ],
     entryComponents: [
         CreateOfferComponent,
