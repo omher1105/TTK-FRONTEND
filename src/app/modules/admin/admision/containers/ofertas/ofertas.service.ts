@@ -39,4 +39,8 @@ export class OfertasService {
     updateOffer(payload): Observable<any> {
         return this._httpClient.patch<any>(`${this.apiUrl}oferta/actualizar/${payload.id}`, payload);
     }
+
+    updateStatusOffer(payload): Observable<any> {
+        return this._httpClient.patch<any>(`${this.apiUrl}oferta/actualizar/estado/${payload.id}`, payload);
+    }
 }

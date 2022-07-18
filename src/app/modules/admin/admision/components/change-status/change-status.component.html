@@ -1,6 +1,6 @@
 <div class="flex flex-col w-full gap-4">
     <h2 mat-dialog-title>Cambiar estado de oferta laboral</h2>
-    <div mat-dialog-content>
+    <div mat-dialog-content [formGroup]="formActions">
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-dense w-full" appearance="fill">
             <mat-label>Estado de la oferta</mat-label>
             <mat-select formControlName="estadoOferta" placeholder="Estado de la oferta">
