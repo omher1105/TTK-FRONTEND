@@ -47,7 +47,7 @@ export class UserService
      */
     get(): Observable<User>
     {
-        return this._httpClient.get<User>(environment.apiUrl + 'auth/usuario ').pipe(
+        return this._httpClient.get<User>(environment.apiUrl + 'users/me').pipe(
             tap((user) => {
                 this._user.next(user);
             })

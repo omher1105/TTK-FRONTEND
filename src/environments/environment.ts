@@ -4,7 +4,8 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'https://jwt-ttk.herokuapp.com/'
+    apiUrl: 'http://localhost:8001/api/v1/',
+    // apiUrlV1: 'https://jwt-ttk.herokuapp.com/'
 };
 
 /*

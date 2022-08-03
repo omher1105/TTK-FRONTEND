@@ -37,9 +37,7 @@ export class AuthInterceptor implements HttpInterceptor
         {
             newReq = req.clone({
                 headers: req.headers
-                    .set('Authorization', 'Bearer ' + this._authService.accessToken)
-                    .set('Access-Control-Allow-Origin', '*')
-                    .set('Access-Control-Allow-Credentials', 'True')
+                    .set('Authorization', 'JWT ' + this._authService.accessToken)
             });
         }
 

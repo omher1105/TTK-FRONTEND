@@ -5,7 +5,8 @@ export interface User
     nombre?: string;
     email?: string;
     username?: string;
-    role?: string;
+    role?: any;
+    rol?: any;
     avatar?: string;
     fotografia?: string;
     status?: string;

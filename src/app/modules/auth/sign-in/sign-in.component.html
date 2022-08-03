@@ -39,11 +39,11 @@
                     <input
                         id="email"
                         matInput
-                        [formControlName]="'nombreUsuario'">
-                    <mat-error *ngIf="signInForm.get('nombreUsuario').hasError('required')">
+                        [formControlName]="'email'">
+                    <mat-error *ngIf="signInForm.get('email').hasError('required')">
                         Este campo es requerido
                     </mat-error>
-                    <mat-error *ngIf="signInForm.get('nombreUsuario').hasError('email')">
+                    <mat-error *ngIf="signInForm.get('email').hasError('email')">
                         Por favor ingresa un correo electrónico válido
                     </mat-error>
                 </mat-form-field>
