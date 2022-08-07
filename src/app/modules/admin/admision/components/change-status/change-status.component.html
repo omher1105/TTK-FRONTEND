@@ -5,8 +5,8 @@
             <mat-label>Estado de la oferta</mat-label>
             <mat-select formControlName="estadoOferta" placeholder="Estado de la oferta">
                 <mat-option [value]="null">----</mat-option>
-                <ng-container *ngFor="let option of status$ | async">
-                    <mat-option [value]="option">{{ option.estado }}</mat-option>
+                <ng-container *ngFor="let option of status">
+                    <mat-option [value]="option">{{ option.name }}</mat-option>
                 </ng-container>
             </mat-select>
             <mat-error *ngIf="formActions.get('estadoOferta').hasError('required')">

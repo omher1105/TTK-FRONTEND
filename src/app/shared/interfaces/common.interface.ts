@@ -3,7 +3,7 @@ export interface IPagination<T> {
     maxPages: number;
     page: number;
     totalElements: number;
-    result: Array<T>;
+    results: Array<T>;
 }
 
 export interface IDialogData<T> {
@@ -18,7 +18,7 @@ export interface IDialogData<T> {
 
 export interface Estado {
     id: number;
-    estado: string;
+    name: string;
 }
 
 export interface Encargado {
@@ -31,6 +31,5 @@ export interface Encargado {
 
 export interface Cargo {
     id: number;
-    nombreCargo: string;
-    descripcion: string;
+    name: string;
 }

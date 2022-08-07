@@ -16,8 +16,8 @@
                             matInput
                             autocomplete="off"
                             placeholder="Ingrese un título para la oferta"
-                            [formControlName]="'titulo'">
-                    <mat-error *ngIf="formActions.get('titulo').hasError('required')">
+                            [formControlName]="'title'">
+                    <mat-error *ngIf="formActions.get('title').hasError('required')">
                         Este campo es requerido
                     </mat-error>
                 </mat-form-field>
@@ -26,8 +26,8 @@
                     <textarea matInput
                               autocomplete="off"
                               placeholder="Ingrese una descripción de la oferta mínimo 50 caracteres máximo 1000 caracteres"
-                              formControlName="descripcion"></textarea>
-                    <mat-error *ngIf="formActions.get('descripcion').hasError('required')">
+                              formControlName="description"></textarea>
+                    <mat-error *ngIf="formActions.get('description').hasError('required')">
                         Este campo es requerido
                     </mat-error>
                 </mat-form-field>
@@ -43,10 +43,10 @@
                 </mat-form-field>
                 <mat-form-field class="fuse-mat-no-subscript fuse-mat-dense" appearance="fill">
                     <mat-label>Cargo</mat-label>
-                    <mat-select formControlName="cargoOferta" placeholder="Asociar cargo a la oferta">
+                    <mat-select formControlName="position" placeholder="Asociar cargo a la oferta">
                         <mat-option [value]="null">----</mat-option>
                         <ng-container *ngFor="let option of positions$ | async">
-                            <mat-option [value]="option">{{ option.nombreCargo }}</mat-option>
+                            <mat-option [value]="option">{{ option.name }}</mat-option>
                         </ng-container>
                     </mat-select>
                 </mat-form-field>

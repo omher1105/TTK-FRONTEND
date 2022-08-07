@@ -57,24 +57,16 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
                     this._ngxSpinner.show();
                     const rawValue = this._offerService.eventFilters.value;
                     const filters = rawValue ? FormUtils.deleteKeysNullInObject(rawValue) : null;
-                    const isFilters = !!filters;
                     const queryParamsByPaginator = {...filters} as any;
-                    queryParamsByPaginator.size = this.paginator.pageSize;
-                    queryParamsByPaginator.numpagina = this.paginator.pageIndex + 1;
-                    return this.getEvaluateOffersByFilters(queryParamsByPaginator, isFilters);
+                    queryParamsByPaginator.limit = this.paginator.pageSize;
+                    queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
+                    return this._offerService.getOffers(queryParamsByPaginator);
                 })
             ).subscribe((response) => {
             this._ngxSpinner.hide();
-            this.count = response.totalElements;
-            this.dataSource = response.result;
+            this.count = response.count;
+            this.dataSource = response.results;
         });
-    }
-
-    getEvaluateOffersByFilters(queryParamsByPaginator, isFilters = false): Observable<IPagination<Oferta>> {
-        if (!isFilters) {
-            return this._offerService.getOffers(queryParamsByPaginator);
-        }
-        return this._offerService.getOffersByFilters(queryParamsByPaginator);
     }
 
     createOrEditOffer(element?): void {
@@ -82,7 +74,7 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
             data: {
                 meta: element
             },
-            width: '30vw',
+            width: '50vw',
             disableClose: true
         };
 

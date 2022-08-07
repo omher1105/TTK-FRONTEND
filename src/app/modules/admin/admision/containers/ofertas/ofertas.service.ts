@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {IPagination} from '../../../../../shared/interfaces/common.interface';
 import {Oferta} from '../../admision.interface';
+import {User} from '../../../../../core/user/user.types';
 
 @Injectable({
     providedIn: 'root'
@@ -21,26 +22,15 @@ export class OfertasService {
     }
 
     getOffers(queryParams = null): Observable<IPagination<Oferta>> {
-        return this._httpClient.get<IPagination<Oferta>>(`${this.apiUrl}oferta/lista`, {params: queryParams});
+        return this._httpClient.get<IPagination<Oferta>>(`${this.apiUrl}admision/offers/`, {params: queryParams});
     }
 
-    getOffersByFilters(queryParams = null): Observable<IPagination<Oferta>> {
-        queryParams.search = queryParams?.search || '';
-        queryParams.creadorOferta = queryParams?.creadorOferta || '';
-        queryParams.estadoOferta = queryParams?.estadoOferta || '';
-        queryParams.fechaPublicacion = queryParams?.fechaPublicacion || '';
-        return this._httpClient.get<IPagination<Oferta>>(`${this.apiUrl}oferta/lista/filtrada`, {params: queryParams});
-    }
-
-    createOffer(payload): Observable<any> {
-        return this._httpClient.put<any>(`${this.apiUrl}oferta/crear`, payload);
+    createOffer(payload, user: User): Observable<any> {
+        payload.offerCreator = user.id;
+        return this._httpClient.post<any>(`${this.apiUrl}admision/offers/`, payload);
     }
 
     updateOffer(payload): Observable<any> {
-        return this._httpClient.patch<any>(`${this.apiUrl}oferta/actualizar/${payload.id}`, payload);
-    }
-
-    updateStatusOffer(payload): Observable<any> {
-        return this._httpClient.patch<any>(`${this.apiUrl}oferta/actualizar/estado/${payload.id}`, payload);
+        return this._httpClient.patch<any>(`${this.apiUrl}admision/offers/${payload.id}`, payload);
     }
 }

@@ -5,6 +5,8 @@ import {debounceTime, Observable, Subject, takeUntil} from 'rxjs';
 import moment from 'moment';
 import {Encargado, Estado} from '../../../../../shared/interfaces/common.interface';
 import {CommonService} from '../../../../../shared/services/common.service';
+import {UserService} from '../../../../../core/user/user.service';
+import {User} from '../../../../../core/user/user.types';
 
 @Component({
     selector: 'app-offer-filters',
@@ -15,22 +17,25 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
 
     formFilters: FormGroup;
 
-    status$: Observable<Estado[]>;
-    employees$: Observable<Encargado[]>;
+    status: Estado[] = [
+        {id: 1, name: 'Pendiente'},
+        {id: 2, name: 'Aprobada'},
+        {id: 3, name: 'Rechazada'}
+    ];
+    employees$: Observable<User[]>;
 
     unsubscribe: Subject<void> = new Subject<void>();
 
     constructor(
         private _fb: UntypedFormBuilder,
-        private _commonService: CommonService,
+        private _userService: UserService,
         private _offerService: OfertasService,
     ) {
         this.createFormFilters();
     }
 
     ngOnInit(): void {
-        this.status$ = this._commonService.getStatus();
-        this.employees$ = this._commonService.getEmployees();
+        this.employees$ = this._userService.getAll({paginated: false});
     }
 
     ngAfterViewInit(): void {
@@ -54,9 +59,9 @@ export class OfferFiltersComponent implements OnInit, AfterViewInit {
     createFormFilters(): void {
         this.formFilters = this._fb.group({
             search: [''],
-            estadoOferta: [''],
-            creadorOferta: [''],
-            fechaPublicacion: [''],
+            status: [''],
+            offerCreator: [''],
+            publicationDate: [''],
         });
     }
 
