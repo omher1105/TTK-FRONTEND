@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {BehaviorSubject, merge, Subject, switchMap, takeUntil} from 'rxjs';
+import {BehaviorSubject, merge, Observable, Subject, switchMap, takeUntil} from 'rxjs';
 import {MatPaginator} from '@angular/material/paginator';
 import {OfertasService} from './ofertas.service';
 import {Oferta} from '../../admision.interface';
@@ -8,6 +8,8 @@ import {FormUtils} from '../../../../../shared/utils/form.utils';
 import {CreateOfferComponent} from '../../components/create-offer/create-offer.component';
 import {MessageProviderService} from '../../../../../shared/services/message-provider.service';
 import {ChangeStatusComponent} from '../../components/change-status/change-status.component';
+import {AdmisionService} from '../../admision.service';
+import {IPagination} from '../../../../../shared/interfaces/common.interface';
 
 @Component({
     selector: 'app-ofertas',
@@ -30,7 +32,9 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
         private _ngxSpinner: NgxSpinnerService,
         private _messageProviderService: MessageProviderService,
         private _offerService: OfertasService,
+        private _admisionService: AdmisionService,
     ) {
+        this._admisionService.title.next('Ofertas');
     }
 
     ngOnInit(): void {
@@ -40,6 +44,7 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit(): void {
+
         this.paginator._intl.itemsPerPageLabel = 'Items por página.';
 
         this.initPagination();
@@ -53,14 +58,14 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
                     const rawValue = this._offerService.eventFilters.value;
                     const filters = rawValue ? FormUtils.deleteKeysNullInObject(rawValue) : null;
                     const queryParamsByPaginator = {...filters} as any;
-                    queryParamsByPaginator.size = this.paginator.pageSize;
-                    queryParamsByPaginator.numpagina = this.paginator.pageIndex + 1;
-                    return this._offerService.getOffers(queryParamsByPaginator);
+                    queryParamsByPaginator.limit = this.paginator.pageSize;
+                    queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
+                    return this._offerService.get(queryParamsByPaginator);
                 })
             ).subscribe((response) => {
             this._ngxSpinner.hide();
-            this.count = response.totalElements;
-            this.dataSource = response.result;
+            this.count = response.count;
+            this.dataSource = response.results;
         });
     }
 
@@ -69,12 +74,12 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
             data: {
                 meta: element
             },
-            width: '30vw',
+            width: '50vw',
             disableClose: true
         };
 
-        const dialogRef = this._messageProviderService.showModal(CreateOfferComponent, dialogData);
-        dialogRef.afterClosed().subscribe(_ => {
+        this._messageProviderService.showModal(CreateOfferComponent, dialogData)
+            .afterClosed().subscribe(_ => {
             this.changesSubject.next(true);
         });
     }
@@ -84,12 +89,12 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
             data: {
                 meta: element
             },
-            width: '30vw',
+            width: '50vw',
             disableClose: true
         };
 
-        const dialogRef = this._messageProviderService.showModal(ChangeStatusComponent, dialogData);
-        dialogRef.afterClosed().subscribe(_ => {
+        this._messageProviderService.showModal(ChangeStatusComponent, dialogData)
+            .afterClosed().subscribe(_ => {
             this.changesSubject.next(true);
         });
     }

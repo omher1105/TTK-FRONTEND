@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmpresaComponent implements OnInit {
 
+  availableColors: any[] = [
+    {name: 'Honestidad', color: 'primary'},
+    {name: 'Responsabilidad', color: 'primary'},
+    {name: 'Profesionalismo', color: 'primary'},
+    {name: 'Trabajo duro', color: 'primary'},
+  ];
+
   constructor() { }
 
   ngOnInit(): void {

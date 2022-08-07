@@ -67,7 +67,7 @@ export class AuthService {
             return throwError('User is already logged in.');
         }
 
-        return this._httpClient.post(this.apiUrl + 'auth/login', credentials).pipe(
+        return this._httpClient.post(this.apiUrl + 'auth/token-auth/', credentials).pipe(
             switchMap((response: any) => {
 
                 // Store the access token in the local storage
@@ -77,7 +77,7 @@ export class AuthService {
                 this._authenticated = true;
 
                 // Store the user on the user service
-                this._userService.user = {username: response.nombreUsuario, role: response.authorities};
+                // this._userService.user = {username: response.nombreUsuario, role: response.authorities};
 
                 // Return a new observable with the response
                 return of(response);

@@ -6,7 +6,9 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 })
 export class MessageProviderService {
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+      public dialog: MatDialog,
+  ) {
   }
 
   showModal(component, config): MatDialogRef<any> {

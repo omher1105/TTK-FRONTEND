@@ -16,7 +16,11 @@ export class ChangeStatusComponent implements OnInit {
 
     formActions: FormGroup;
 
-    status$: Observable<Estado[]>;
+    status: Estado[] = [
+        {id: 1, name: 'Pendiente'},
+        {id: 2, name: 'Aprobada'},
+        {id: 3, name: 'Rechazada'}
+    ];
 
     constructor(
         private _fb: UntypedFormBuilder,
@@ -31,7 +35,7 @@ export class ChangeStatusComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.status$ = this._commonService.getStatus();
+        // this.status$ = this._commonService.getStatus();
     }
 
     get id(): FormControl {
@@ -46,7 +50,7 @@ export class ChangeStatusComponent implements OnInit {
     createFormActions(): void {
         this.formActions = this._fb.group({
             id: [null, [Validators.required]],
-            estadoOferta: [null, [Validators.required]],
+            status: [null, [Validators.required]],
         });
     }
 
@@ -62,7 +66,7 @@ export class ChangeStatusComponent implements OnInit {
 
     async evaluateTransaction(payload) {
         try {
-            await this._offerService.updateOffer(payload).toPromise();
+            await this._offerService.update(payload).toPromise();
             this.dialogRef.close();
         } catch (err) {
             throw new Error(err);

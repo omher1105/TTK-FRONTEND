@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {IPagination} from '../../../../../shared/interfaces/common.interface';
 import {Oferta} from '../../admision.interface';
+import {User} from '../../../../../core/user/user.types';
 
 @Injectable({
     providedIn: 'root'
@@ -20,15 +21,20 @@ export class OfertasService {
     ) {
     }
 
-    getOffers(queryParams = null): Observable<IPagination<Oferta>> {
-        return this._httpClient.get<IPagination<Oferta>>(`${this.apiUrl}oferta/lista`, {params: queryParams});
+    get(queryParams = null): Observable<IPagination<Oferta>> {
+        return this._httpClient.get<IPagination<Oferta>>(`${this.apiUrl}admision/offers/`, {params: queryParams});
     }
 
-    createOffer(payload): Observable<any> {
-        return this._httpClient.put<any>(`${this.apiUrl}oferta/crear`, payload);
+    create(payload, user: User): Observable<any> {
+        payload.offerCreator = user.id;
+        return this._httpClient.post<any>(`${this.apiUrl}admision/offers/`, payload);
     }
 
-    updateOffer(payload): Observable<any> {
-        return this._httpClient.patch<any>(`${this.apiUrl}oferta/actualizar/${payload.id}`, payload);
+    update(payload): Observable<any> {
+        return this._httpClient.patch<any>(`${this.apiUrl}admision/offers/${payload.id}/`, payload);
+    }
+
+    delete(id: number): Observable<void> {
+        return this._httpClient.delete<void>(`${this.apiUrl}admision/offers/${id}/`);
     }
 }

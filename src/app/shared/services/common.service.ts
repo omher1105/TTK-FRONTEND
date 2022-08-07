@@ -19,11 +19,7 @@ export class CommonService {
     return this._httpClient.get<Estado[]>(`${this.apiUrl}estado/lista`, {params: queryParams});
   }
 
-  getEmployees(queryParams = null): Observable<Encargado[]> {
-    return this._httpClient.get<Encargado[]>(`${this.apiUrl}encargado/lista`, {params: queryParams});
-  }
-
   getPositions(queryParams = null): Observable<Cargo[]> {
-    return this._httpClient.get<Cargo[]>(`${this.apiUrl}cargo/lista`, {params: queryParams});
+    return this._httpClient.get<Cargo[]>(`${this.apiUrl}common/position-applies/`, {params: queryParams});
   }
 }

@@ -1,15 +1,15 @@
 <div class="flex flex-col w-full gap-4">
     <h2 mat-dialog-title>Cambiar estado de oferta laboral</h2>
-    <div mat-dialog-content>
+    <div mat-dialog-content [formGroup]="formActions">
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-dense w-full" appearance="fill">
             <mat-label>Estado de la oferta</mat-label>
-            <mat-select formControlName="estadoOferta" placeholder="Estado de la oferta">
+            <mat-select formControlName="status" placeholder="Estado de la oferta">
                 <mat-option [value]="null">----</mat-option>
-                <ng-container *ngFor="let option of status$ | async">
-                    <mat-option [value]="option">{{ option.estado }}</mat-option>
+                <ng-container *ngFor="let option of status">
+                    <mat-option [value]="option.id">{{ option.name }}</mat-option>
                 </ng-container>
             </mat-select>
-            <mat-error *ngIf="formActions.get('estadoOferta').hasError('required')">
+            <mat-error *ngIf="formActions.get('status').hasError('required')">
                 Este campo es requerido
             </mat-error>
         </mat-form-field>
