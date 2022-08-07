@@ -78,8 +78,8 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
             disableClose: true
         };
 
-        const dialogRef = this._messageProviderService.showModal(CreateOfferComponent, dialogData);
-        dialogRef.afterClosed().subscribe(_ => {
+        this._messageProviderService.showModal(CreateOfferComponent, dialogData)
+            .afterClosed().subscribe(_ => {
             this.changesSubject.next(true);
         });
     }
@@ -89,12 +89,12 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
             data: {
                 meta: element
             },
-            width: '30vw',
+            width: '50vw',
             disableClose: true
         };
 
-        const dialogRef = this._messageProviderService.showModal(ChangeStatusComponent, dialogData);
-        dialogRef.afterClosed().subscribe(_ => {
+        this._messageProviderService.showModal(ChangeStatusComponent, dialogData)
+            .afterClosed().subscribe(_ => {
             this.changesSubject.next(true);
         });
     }

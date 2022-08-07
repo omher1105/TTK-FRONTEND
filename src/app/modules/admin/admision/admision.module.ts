@@ -26,6 +26,7 @@ import { CreateOfferComponent } from './components/create-offer/create-offer.com
 import {MatDialogModule} from '@angular/material/dialog';
 import { ChangeStatusComponent } from './components/change-status/change-status.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {SharedModule} from '../../../shared/shared.module';
 
 const routes: Routes = [
     {
@@ -96,6 +97,7 @@ const routes: Routes = [
         MatMenuModule,
         MatDialogModule,
         MatSidenavModule,
+        SharedModule,
     ],
     entryComponents: [
         CreateOfferComponent,

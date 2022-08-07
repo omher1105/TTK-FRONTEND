@@ -31,6 +31,6 @@ export class OfertasService {
     }
 
     updateOffer(payload): Observable<any> {
-        return this._httpClient.patch<any>(`${this.apiUrl}admision/offers/${payload.id}`, payload);
+        return this._httpClient.patch<any>(`${this.apiUrl}admision/offers/${payload.id}/`, payload);
     }
 }

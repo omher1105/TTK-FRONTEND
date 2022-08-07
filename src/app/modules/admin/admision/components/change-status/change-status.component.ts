@@ -50,7 +50,7 @@ export class ChangeStatusComponent implements OnInit {
     createFormActions(): void {
         this.formActions = this._fb.group({
             id: [null, [Validators.required]],
-            estadoOferta: [null, [Validators.required]],
+            status: [null, [Validators.required]],
         });
     }
 
