@@ -66,7 +66,7 @@ export class ChangeStatusComponent implements OnInit {
 
     async evaluateTransaction(payload) {
         try {
-            await this._offerService.updateOffer(payload).toPromise();
+            await this._offerService.update(payload).toPromise();
             this.dialogRef.close();
         } catch (err) {
             throw new Error(err);

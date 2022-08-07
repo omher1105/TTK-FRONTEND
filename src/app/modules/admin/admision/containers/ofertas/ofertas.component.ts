@@ -60,7 +60,7 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
                     const queryParamsByPaginator = {...filters} as any;
                     queryParamsByPaginator.limit = this.paginator.pageSize;
                     queryParamsByPaginator.offset = queryParamsByPaginator.limit * this.paginator.pageIndex;
-                    return this._offerService.getOffers(queryParamsByPaginator);
+                    return this._offerService.get(queryParamsByPaginator);
                 })
             ).subscribe((response) => {
             this._ngxSpinner.hide();

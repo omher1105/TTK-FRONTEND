@@ -103,9 +103,9 @@ export class CreateOfferComponent implements OnInit, OnDestroy {
 
     createOrUpdateOffer(payload): Observable<any> {
         if (payload?.id) {
-            return this._offerService.updateOffer(payload);
+            return this._offerService.update(payload);
         }
-        return this._offerService.createOffer(payload, this.user);
+        return this._offerService.create(payload, this.user);
     }
 
     ngOnDestroy(): void {
