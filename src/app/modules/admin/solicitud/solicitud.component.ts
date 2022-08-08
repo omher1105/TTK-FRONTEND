@@ -4,6 +4,7 @@ import {Subject} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FuseNavigationService} from '../../../../@fuse/components/navigation';
 import {NavigationService} from '../../../core/navigation/navigation.service';
+import {SolicitudService} from './solicitud.service';
 
 @Component({
   selector: 'app-solicitud',
@@ -28,6 +29,7 @@ export class SolicitudComponent implements OnInit {
       private _router: Router,
       private _fuseNavigationService: FuseNavigationService,
       private _navigationService: NavigationService,
+      private _requestService: SolicitudService,
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +41,10 @@ export class SolicitudComponent implements OnInit {
 
     // Mark for check
     this._changeDetectorRef.markForCheck();
+  }
+
+  eventCreate(): void {
+    this._requestService.eventCreate.next();
   }
 
 }

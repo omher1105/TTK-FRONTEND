@@ -1,7 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Cargo, Estado, IDialogData} from '../../../../../shared/interfaces/common.interface';
+import {AbstractChoice, Cargo, Estado, IDialogData} from '../../../../../shared/interfaces/common.interface';
 import {CommonService} from '../../../../../shared/services/common.service';
 import {OfertasService} from '../../containers/ofertas/ofertas.service';
 import {Observable, Subject, takeUntil} from 'rxjs';
@@ -22,7 +22,7 @@ export class CreateOfferComponent implements OnInit, OnDestroy {
 
     formActions: FormGroup;
 
-    positions$: Observable<Cargo[]>;
+    positions$: Observable<AbstractChoice[]>;
 
     user: User;
 

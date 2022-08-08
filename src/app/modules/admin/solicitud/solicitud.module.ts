@@ -13,6 +13,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MaterialFileInputModule} from 'ngx-material-file-input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonModule} from '@angular/material/button';
 
 const routes: Routes = [
     {
@@ -49,7 +50,8 @@ const routes: Routes = [
         MatDatepickerModule,
         MaterialFileInputModule,
         MatIconModule,
-        MatRadioModule
+        MatRadioModule,
+        MatButtonModule
     ]
 })
 export class SolicitudModule {

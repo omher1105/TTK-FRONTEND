@@ -33,3 +33,9 @@ export interface Cargo {
     id: number;
     name: string;
 }
+
+
+export interface AbstractChoice {
+    id: number;
+    name: string;
+}
