@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-registrar-postulacion',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrarPostulacionComponent implements OnInit {
 
-  constructor() { }
+  formActions: FormGroup;
+
+  constructor(
+      private _fb: UntypedFormBuilder,
+  ) {
+    this.createFormActions();
+  }
 
   ngOnInit(): void {
+  }
+
+  createFormActions(): void {
+    this.formActions = this._fb.group({
+      id: [null],
+      isTravel: [null],
+      isExperience: [null],
+    });
   }
 
 }
