@@ -13,6 +13,8 @@
         "test": "ng test",
         "lint": "ng lint",
         "heroku-postbuild": "ng build --configuration production",
+        "postinstall": "ng build --configuration production",
+        "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript"
     },
     "dependencies": {
         "@angular/animations": "14.0.0",
