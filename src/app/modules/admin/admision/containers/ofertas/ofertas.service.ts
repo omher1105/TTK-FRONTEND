@@ -25,6 +25,10 @@ export class OfertasService {
         return this._httpClient.get<IPagination<Oferta>>(`${this.apiUrl}admision/offers/`, {params: queryParams});
     }
 
+    getAvailableOffers(queryParams = null): Observable<any> {
+        return this._httpClient.get<any>(`${this.apiUrl}admision/available-offers/`, {params: queryParams});
+    }
+
     create(payload, user: User): Observable<any> {
         payload.offerCreator = user.id;
         return this._httpClient.post<any>(`${this.apiUrl}admision/offers/`, payload);
