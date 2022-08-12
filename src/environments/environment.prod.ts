@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://jwt-ttk.herokuapp.com/'
+    apiUrl: 'https://ttk-back.herokuapp.com/api/v1/'
 };
