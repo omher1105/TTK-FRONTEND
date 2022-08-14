@@ -17,7 +17,6 @@ export class ChangeStatusComponent implements OnInit {
     formActions: FormGroup;
 
     status: Estado[] = [
-        {id: 1, name: 'Pendiente'},
         {id: 2, name: 'Aprobada'},
         {id: 3, name: 'Rechazada'}
     ];

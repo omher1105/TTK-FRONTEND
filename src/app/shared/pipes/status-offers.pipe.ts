@@ -8,7 +8,7 @@ export class StatusOffersPipe implements PipeTransform {
   transform(status: number): string {
     switch (status) {
       case 1:
-        return 'Pendiente';
+        return 'Creado';
       case 2:
         return 'Aprobada';
       case 3:
