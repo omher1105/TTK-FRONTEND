@@ -75,7 +75,8 @@ export class OfertasComponent implements OnInit, AfterViewInit, OnDestroy {
                 meta: element
             },
             width: '50vw',
-            disableClose: true
+            disableClose: true,
+            closeOnNavigation: true
         };
 
         this._messageProviderService.showModal(CreateOfferComponent, dialogData)

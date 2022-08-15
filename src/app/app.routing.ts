@@ -4,6 +4,7 @@ import {NoAuthGuard} from 'app/core/auth/guards/noAuth.guard';
 import {LayoutComponent} from 'app/layout/layout.component';
 import {InitialDataResolver} from 'app/app.resolvers';
 import {EmpresaComponent} from './modules/admin/empresa/empresa.component';
+import {EmailVerificationModule} from './modules/auth/email-verification/email-verification.module';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -34,6 +35,11 @@ export const appRoutes: Route[] = [
                 path: 'confirmacion-requerida',
                 loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module')
                     .then(m => m.AuthConfirmationRequiredModule)
+            },
+            {
+                path: 'verificar-correo',
+                loadChildren: () => import('app/modules/auth/email-verification/email-verification.module')
+                    .then(m => m.EmailVerificationModule)
             },
             {
                 path: 'olvidar-contrasenia',

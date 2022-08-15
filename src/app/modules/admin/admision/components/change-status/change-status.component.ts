@@ -6,6 +6,7 @@ import {CommonService} from '../../../../../shared/services/common.service';
 import {OfertasService} from '../../containers/ofertas/ofertas.service';
 import {FormControl, FormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
+import moment from 'moment';
 
 @Component({
     selector: 'app-change-status',
@@ -17,6 +18,7 @@ export class ChangeStatusComponent implements OnInit {
     formActions: FormGroup;
 
     status: Estado[] = [
+        // {id: 1, name: 'Creado'},
         {id: 2, name: 'Aprobada'},
         {id: 3, name: 'Rechazada'}
     ];
@@ -57,6 +59,13 @@ export class ChangeStatusComponent implements OnInit {
         if (this.formActions.valid) {
             this._ngxSpinner.show();
             const payload = this.formActions.getRawValue();
+            const currentDate = moment().format('YYYY-MM-DD hh:mm:ss');
+            if (payload.status === 2) {
+                payload.publicationDate = currentDate;
+            } else if (payload.status === 3) {
+                payload.deactivationDate = currentDate;
+            }
+
             this.evaluateTransaction(payload);
         } else {
             this.formActions.markAllAsTouched();

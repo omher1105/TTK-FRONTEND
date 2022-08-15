@@ -9,7 +9,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {MessageProviderService} from '../../../../../shared/services/message-provider.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../../../../../core/auth/auth.service';
-import { User } from 'app/core/user/user.types';
+import {User} from 'app/core/user/user.types';
 import {UserService} from '../../../../../core/user/user.service';
 
 
@@ -63,7 +63,6 @@ export class CreateOfferComponent implements OnInit, OnDestroy {
     }
 
     setValues(): void {
-        console.log('==>', this.data.meta);
         this.formActions.patchValue(this.data?.meta);
     }
 
@@ -94,7 +93,7 @@ export class CreateOfferComponent implements OnInit, OnDestroy {
             this.dialogRef.close();
         } catch (err) {
             this._snackBar.open('Error al crear al oferta',
-                'Cancelar', { duration: 2000 })
+                'Cancelar', {duration: 2000});
             throw new Error(err);
         } finally {
             this._ngxSpinner.hide();

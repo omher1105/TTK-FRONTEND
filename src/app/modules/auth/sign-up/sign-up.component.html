@@ -37,10 +37,10 @@
                 <mat-form-field class="w-full">
                     <mat-label>Nombres completos</mat-label>
                     <input
-                        id="nombre"
+                        id="name"
                         matInput
-                        [formControlName]="'nombre'">
-                    <mat-error *ngIf="signUpForm.get('nombre').hasError('required')">
+                        [formControlName]="'name'">
+                    <mat-error *ngIf="signUpForm.get('name').hasError('required')">
                         Este campo es requerido
                     </mat-error>
                 </mat-form-field>
@@ -49,10 +49,10 @@
                 <mat-form-field class="w-full">
                     <mat-label>Usuario</mat-label>
                     <input
-                            id="nombreUsuario"
+                            id="username"
                             matInput
-                            [formControlName]="'nombreUsuario'">
-                    <mat-error *ngIf="signUpForm.get('nombreUsuario').hasError('required')">
+                            [formControlName]="'username'">
+                    <mat-error *ngIf="signUpForm.get('username').hasError('required')">
                         Este campo es requerido
                     </mat-error>
                 </mat-form-field>

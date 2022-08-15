@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, NgForm, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {fuseAnimations} from '@fuse/animations';
 import {FuseAlertType} from '@fuse/components/alert';
 import {AuthService} from 'app/core/auth/auth.service';
@@ -21,14 +21,20 @@ export class AuthSignUpComponent implements OnInit {
     signUpForm: UntypedFormGroup;
     showAlert: boolean = false;
 
+    queryParams = null;
+
     /**
      * Constructor
      */
     constructor(
         private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
+        private _activatedRoute: ActivatedRoute,
         private _router: Router
     ) {
+        this._activatedRoute.queryParams.subscribe(params => {
+            this.queryParams = params;
+        });
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -41,13 +47,10 @@ export class AuthSignUpComponent implements OnInit {
     ngOnInit(): void {
         // Create the form
         this.signUpForm = this._formBuilder.group({
-                nombre: ['', Validators.required],
-                nombreUsuario: ['', Validators.required],
+                name: ['', Validators.required],
+                username: ['', Validators.required],
                 email: ['', [Validators.required, Validators.email]],
                 password: ['', Validators.required],
-                roles: [
-                    ['admin'],
-                ],
                 agreements: ['', Validators.requiredTrue]
             }
         );
@@ -72,13 +75,18 @@ export class AuthSignUpComponent implements OnInit {
         // Hide the alert
         this.showAlert = false;
 
+        const payload = this.signUpForm.value;
+        if (this.queryParams?.offer) {
+            payload.selectedOffer = +this.queryParams?.offer;
+        }
+
         // Sign up
-        this._authService.signUp(this.signUpForm.value)
+        this._authService.signUp(payload)
             .subscribe(
                 (response) => {
 
                     // Navigate to the confirmation required page
-                    this._router.navigateByUrl('/iniciar-sesion');
+                    this._router.navigateByUrl('/confirmacion-requerida');
                 },
                 (response) => {
 

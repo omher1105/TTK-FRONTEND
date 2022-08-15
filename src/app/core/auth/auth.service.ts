@@ -143,7 +143,7 @@ export class AuthService {
      * @param user
      */
     signUp(user: { name: string; email: string; password: string; company: string }): Observable<any> {
-        return this._httpClient.post(environment.apiUrl + 'auth/nuevo', user);
+        return this._httpClient.post(environment.apiUrl + 'register-postulant/', user);
     }
 
     /**
@@ -176,5 +176,15 @@ export class AuthService {
 
         // If the access token exists and it didn't expire, sign in using it
         return this.signInUsingToken();
+    }
+
+
+    /**
+     * Sign up
+     *
+     * @param token
+     */
+    verificationEmail(token: string): Observable<any> {
+        return this._httpClient.post(environment.apiUrl + 'verify-account/', {token});
     }
 }
