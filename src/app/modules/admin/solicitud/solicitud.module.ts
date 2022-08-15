@@ -14,6 +14,7 @@ import {MaterialFileInputModule} from 'ngx-material-file-input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
+import { SuccessRegistrationComponent } from './containers/success-registration/success-registration.component';
 
 const routes: Routes = [
     {
@@ -36,7 +37,8 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         SolicitudComponent,
-        RegistrarPostulacionComponent
+        RegistrarPostulacionComponent,
+        SuccessRegistrationComponent
     ],
     imports: [
         CommonModule,

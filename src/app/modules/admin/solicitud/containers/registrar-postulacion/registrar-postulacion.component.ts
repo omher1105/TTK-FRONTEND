@@ -7,6 +7,10 @@ import {CommonService} from '../../../../../shared/services/common.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import moment from 'moment';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {User} from '../../../../../core/user/user.types';
+import {AuthService} from '../../../../../core/auth/auth.service';
+import {UserService} from '../../../../../core/user/user.service';
+import {FormUtils} from '../../../../../shared/utils/form.utils';
 
 @Component({
     selector: 'app-registrar-postulacion',
@@ -18,6 +22,8 @@ export class RegistrarPostulacionComponent implements OnInit {
     formActions: FormGroup;
     civilStatus$: Observable<AbstractChoice[]>;
 
+    user: User;
+
     unsubscribe = new Subject<void>();
 
     constructor(
@@ -26,6 +32,7 @@ export class RegistrarPostulacionComponent implements OnInit {
         private _requestService: SolicitudService,
         private _commonService: CommonService,
         private _snackService: MatSnackBar,
+        private _userService: UserService,
     ) {
         this.createFormActions();
     }
@@ -38,6 +45,10 @@ export class RegistrarPostulacionComponent implements OnInit {
             .subscribe(_ => {
                 this.createRequest();
             });
+
+        this._userService.user$.subscribe(user => {
+            this.user = user;
+        });
     }
 
     createFormActions(): void {
@@ -84,7 +95,8 @@ export class RegistrarPostulacionComponent implements OnInit {
             payload.birthDate = payload.birthDate ? moment(payload.birthDate).format('YYYY-MM-DD') : null;
             payload.workStart = payload.workStart ? moment(payload.workStart).format('YYYY-MM-DD') : null;
             payload.workEnd = payload.workEnd ? moment(payload.workEnd).format('YYYY-MM-DD') : null;
-            this.createTransaction(payload);
+            const formData = FormUtils.parseToFormData(payload);
+            this.createTransaction(formData);
         } else {
             this.formActions.markAllAsTouched();
         }
@@ -93,6 +105,8 @@ export class RegistrarPostulacionComponent implements OnInit {
     async createTransaction(payload): Promise<void> {
         try {
             await this._requestService.registerRequest(payload).toPromise();
+            this.user.isFillForm = true;
+            this._userService._user.next(this.user);
             this._snackService.open('Solicitud registrada correctamente', 'Cerrar', {duration: 2000});
             this.formActions.reset();
         } catch (err) {

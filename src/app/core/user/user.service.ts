@@ -8,7 +8,7 @@ import {environment} from '../../../environments/environment';
     providedIn: 'root'
 })
 export class UserService {
-    private _user: ReplaySubject<User> = new ReplaySubject<User>(1);
+    _user: ReplaySubject<User> = new ReplaySubject<User>(1);
 
     /**
      * Constructor

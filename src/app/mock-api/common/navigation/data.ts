@@ -16,7 +16,7 @@ export const defaultItemsNavigations: FuseNavigationItem[] = [
         title: 'Solicitudes',
         type: 'group',
         isPostulant: true,
-        isAdmin: true,
+        // isAdmin: true,
         children: [
             {
                 id: 'registrar-solicitud',
@@ -25,7 +25,7 @@ export const defaultItemsNavigations: FuseNavigationItem[] = [
                 icon: 'heroicons_outline:chart-pie',
                 link: '/solicitud/registrar-solicitud',
                 isPostulant: true,
-                isAdmin: true,
+                // isAdmin: true,
             },
         ]
     },

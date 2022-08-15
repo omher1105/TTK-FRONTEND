@@ -14,4 +14,5 @@ export interface User
     authorities?: {
         authority: string
     }[];
+    isFillForm?: boolean;
 }

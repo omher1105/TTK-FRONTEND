@@ -37,11 +37,12 @@
 
             <!-- Name Column -->
             <ng-container matColumnDef="informacion">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Informacion del postulante</th>
+                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Informacion del postulante
+                </th>
                 <td mat-cell *matCellDef="let element">
                     <div class="flex flex-col">
                         <div class="font-extrabold text-primary-700">
-                            {{(element?.name || '')+ ' ' + (element?.secondName || '') + ' ' + (element?.lastName || '') + ' ' + (element?.surName || '')}}
+                            {{(element?.name || '') + ' ' + (element?.secondName || '') + ' ' + (element?.lastName || '') + ' ' + (element?.surName || '')}}
                         </div>
                         <div class="font-extralight">
                             {{(element?.department?.name || '') + ' - ' + (element?.province?.name || '') + ' - ' + (element?.district?.name || '')}}
@@ -56,14 +57,25 @@
             <!-- Weight Column -->
             <ng-container matColumnDef="responsable">
                 <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Responsable</th>
-                <td mat-cell *matCellDef="let element"> {{element?.cantidadPostulantes || 0}} </td>
+                <td mat-cell *matCellDef="let element"> {{element?.responsable || '-'}} </td>
             </ng-container>
 
             <!-- Symbol Column -->
             <ng-container matColumnDef="imagen">
-                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Imagen</th>
-                <td mat-cell
-                    *matCellDef="let element"> {{element?.offerCreator?.name}} </td>
+                <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"></th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="relative w-24 h-24">
+                        <img
+                                class="w-full h-full rounded-full"
+                                *ngIf="element.imageFile"
+                                [src]="element.imageFile"
+                                alt="User avatar">
+                        <mat-icon
+                                class="icon-size-24"
+                                *ngIf="!element.imageFile"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                    </div>
+                </td>
             </ng-container>
 
             <!-- Symbol Column -->
