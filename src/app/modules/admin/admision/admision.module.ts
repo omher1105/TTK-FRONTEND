@@ -28,6 +28,7 @@ import { ChangeStatusComponent } from './components/change-status/change-status.
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {SharedModule} from '../../../shared/shared.module';
 import { PostulantFiltersComponent } from './components/postulant-filters/postulant-filters.component';
+import { ChangeResponsabilitiesComponent } from './components/change-responsabilities/change-responsabilities.component';
 
 const routes: Routes = [
     {
@@ -81,6 +82,7 @@ const routes: Routes = [
         CreateOfferComponent,
         ChangeStatusComponent,
         PostulantFiltersComponent,
+        ChangeResponsabilitiesComponent,
     ],
     imports: [
         CommonModule,

@@ -21,6 +21,9 @@ export class RegistrarPostulacionComponent implements OnInit {
 
     formActions: FormGroup;
     civilStatus$: Observable<AbstractChoice[]>;
+    departments$: Observable<AbstractChoice[]>;
+    provinces$: Observable<AbstractChoice[]>;
+    districts$: Observable<AbstractChoice[]>;
 
     user: User;
 
@@ -39,6 +42,9 @@ export class RegistrarPostulacionComponent implements OnInit {
 
     ngOnInit(): void {
         this.civilStatus$ = this._commonService.getCivilStatus({paginated: false});
+        this.departments$ = this._commonService.getDepartments({paginated: false});
+        this.provinces$ = this._commonService.getProvinces({paginated: false});
+        this.districts$ = this._commonService.getDistricts({paginated: false});
 
         this._requestService.eventCreate
             .pipe(takeUntil(this.unsubscribe))
@@ -49,6 +55,8 @@ export class RegistrarPostulacionComponent implements OnInit {
         this._userService.user$.subscribe(user => {
             this.user = user;
         });
+
+        this.formActions.get('imageFile').valueChanges.subscribe(value=>console.log('value', value));
     }
 
     createFormActions(): void {
@@ -57,18 +65,18 @@ export class RegistrarPostulacionComponent implements OnInit {
             name: [null, [Validators.required]],
             secondName: [null],
             lastName: [null, [Validators.required]],
-            surName: [null],
+            surName: [null, [Validators.required]],
             documentNumber: [null, [Validators.required]],
             address: [null],
             email: [null, [Validators.required, Validators.email]],
             secondaryEmail: [null],
             birthDate: [null, [Validators.required]],
-            civilStatus: [null],
-            department: [null],
-            province: [null],
-            district: [null],
-            phone: [null, [Validators.required]],
-            cellphone: [null],
+            civilStatus: [null, [Validators.required]],
+            department: [null, [Validators.required]],
+            province: [null, [Validators.required]],
+            district: [null, [Validators.required]],
+            phone: [null],
+            cellphone: [null, [Validators.required]],
             secondCellphone: [null],
             status: [null],
             isTravel: [null],
@@ -82,7 +90,7 @@ export class RegistrarPostulacionComponent implements OnInit {
             workEnd: [null],
             workCompany: [null],
             workExitDescription: [null],
-            curriculumFile: [null],
+            curriculumFile: [null, [Validators.required]],
             documentFile: [null],
             imageFile: [null],
         });
@@ -95,6 +103,9 @@ export class RegistrarPostulacionComponent implements OnInit {
             payload.birthDate = payload.birthDate ? moment(payload.birthDate).format('YYYY-MM-DD') : null;
             payload.workStart = payload.workStart ? moment(payload.workStart).format('YYYY-MM-DD') : null;
             payload.workEnd = payload.workEnd ? moment(payload.workEnd).format('YYYY-MM-DD') : null;
+            payload.curriculumFile = payload.curriculumFile ? payload.curriculumFile?.files[0] : null;
+            payload.documentFile = payload.documentFile ? payload.documentFile?.files[0] : null;
+            payload.imageFile = payload.imageFile ? payload.imageFile?.files[0] : null;
             const formData = FormUtils.parseToFormData(payload);
             this.createTransaction(formData);
         } else {

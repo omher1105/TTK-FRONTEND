@@ -30,7 +30,7 @@ export class PostulacionesService {
   }
 
   update(payload): Observable<any> {
-    return this._httpClient.patch<any>(`${this.apiUrl}admision/postulants/{payload.id}/`, payload);
+    return this._httpClient.patch<any>(`${this.apiUrl}admision/postulants/${payload.id}/`, payload);
   }
 
   delete(id: number): Observable<void> {

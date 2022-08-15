@@ -93,7 +93,7 @@
                         <mat-label>Departamento</mat-label>
                         <mat-select formControlName="department" placeholder="Selecciona departamento">
                             <mat-option [value]="null">----</mat-option>
-                            <ng-container *ngFor="let option of []">
+                            <ng-container *ngFor="let option of departments$ | async">
                                 <mat-option [value]="option.id">{{ option.name }}</mat-option>
                             </ng-container>
                         </mat-select>
@@ -102,7 +102,7 @@
                         <mat-label>Provincia</mat-label>
                         <mat-select formControlName="province" placeholder="Selecciona provincia">
                             <mat-option [value]="null">----</mat-option>
-                            <ng-container *ngFor="let option of []">
+                            <ng-container *ngFor="let option of provinces$ | async">
                                 <mat-option [value]="option.id">{{ option.name }}</mat-option>
                             </ng-container>
                         </mat-select>
@@ -111,7 +111,7 @@
                         <mat-label>Distrito</mat-label>
                         <mat-select formControlName="district" placeholder="Selecciona distrito">
                             <mat-option [value]="null">----</mat-option>
-                            <ng-container *ngFor="let option of []">
+                            <ng-container *ngFor="let option of districts$ | async">
                                 <mat-option [value]="option.id">{{ option.name }}</mat-option>
                             </ng-container>
                         </mat-select>
@@ -293,19 +293,32 @@
                     <mat-form-field class="w-full">
                         <mat-label>Curriculum vitae</mat-label>
                         <ngx-mat-file-input formControlName="curriculumFile"
+                                            accept="application/pdf"
                                             placeholder="Curriculum vitae"></ngx-mat-file-input>
                         <mat-icon matSuffix>folder</mat-icon>
+                        <mat-error *ngIf="formActions.get('curriculumFile').hasError('required')">
+                            Este campo es requerido
+                        </mat-error>
                     </mat-form-field>
                     <mat-form-field class="w-full">
                         <mat-label>Documento de identidad</mat-label>
                         <ngx-mat-file-input formControlName="documentFile"
+                                            accept="image/*"
                                             placeholder="Documento de identidad"></ngx-mat-file-input>
                         <mat-icon matSuffix>folder</mat-icon>
+                        <mat-error *ngIf="formActions.get('documentFile').hasError('required')">
+                            Este campo es requerido
+                        </mat-error>
                     </mat-form-field>
                     <mat-form-field class="w-full">
                         <mat-label>Fotografia</mat-label>
-                        <ngx-mat-file-input formControlName="imageFile" placeholder="Fotografia"></ngx-mat-file-input>
+                        <ngx-mat-file-input formControlName="imageFile"
+                                            accept="image/*"
+                                            placeholder="Fotografia"></ngx-mat-file-input>
                         <mat-icon matSuffix>folder</mat-icon>
+                        <mat-error *ngIf="formActions.get('imageFile').hasError('required')">
+                            Este campo es requerido
+                        </mat-error>
                     </mat-form-field>
                 </div>
             </div>

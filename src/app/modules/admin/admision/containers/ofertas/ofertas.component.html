@@ -27,9 +27,9 @@
                     <button mat-icon-button
                             [matTooltip]="element?.status | statusOffers">
                         <mat-icon svgIcon="heroicons_outline:information-circle" [ngClass]="{
-                                'status-success': element.status === 2,
-                                'status-created': element.status === 3,
-                                'status-warning': element.status === 3
+                                'text-yellow-500': element.status === 1,
+                                'text-green-500': element.status === 2,
+                                'text-red-500': element.status === 3
                             }"></mat-icon>
                     </button>
                 </td>

@@ -26,4 +26,20 @@ export class CommonService {
   getCivilStatus(queryParams = null): Observable<AbstractChoice[]> {
     return this._httpClient.get<AbstractChoice[]>(`${this.apiUrl}common/civil-status/`, {params: queryParams});
   }
+
+  getDepartments(queryParams = null): Observable<AbstractChoice[]> {
+    return this._httpClient.get<AbstractChoice[]>(`${this.apiUrl}common/departments/`, {params: queryParams});
+  }
+
+  getProvinces(queryParams = null): Observable<AbstractChoice[]> {
+    return this._httpClient.get<AbstractChoice[]>(`${this.apiUrl}common/provinces/`, {params: queryParams});
+  }
+
+  getDistricts(queryParams = null): Observable<AbstractChoice[]> {
+    return this._httpClient.get<AbstractChoice[]>(`${this.apiUrl}common/districts/`, {params: queryParams});
+  }
+
+  downloadPdf(url: string): Observable<any> {
+    return this._httpClient.get<any>(url);
+  }
 }

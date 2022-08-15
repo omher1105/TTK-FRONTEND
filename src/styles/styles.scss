@@ -2,3 +2,14 @@
 /*  @ Import/write your custom styles here.
 /*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
 /* ----------------------------------------------------------------------------------------------------- */
+.status-success {
+  color: forestgreen;
+}
+
+.status-created {
+  color: gold;
+}
+
+.status-warning {
+  color: brown;
+}
