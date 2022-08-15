@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {catchError, Observable, of, switchMap, throwError} from 'rxjs';
+import {BehaviorSubject, catchError, Observable, of, switchMap, throwError} from 'rxjs';
 import {AuthUtils} from 'app/core/auth/auth.utils';
 import {UserService} from 'app/core/user/user.service';
 import {environment} from '../../../environments/environment';
@@ -9,6 +9,9 @@ import {environment} from '../../../environments/environment';
 export class AuthService {
     private _authenticated: boolean = false;
     private apiUrl = environment.apiUrl;
+
+
+    isPostulant$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     /**
      * Constructor

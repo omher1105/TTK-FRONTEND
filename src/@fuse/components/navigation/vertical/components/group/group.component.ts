@@ -19,6 +19,8 @@ export class FuseVerticalNavigationGroupItemComponent implements OnInit, OnDestr
     @Input() autoCollapse: boolean;
     @Input() item: FuseNavigationItem;
     @Input() name: string;
+    @Input() isPostulant: boolean = false;
+    @Input() isAdmin: boolean = false;
 
     private _fuseVerticalNavigationComponent: FuseVerticalNavigationComponent;
     private _unsubscribeAll: Subject<any> = new Subject<any>();

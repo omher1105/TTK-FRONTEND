@@ -6,6 +6,8 @@
     class="dark bg-gray-900 print:hidden"
     [mode]="isScreenSmall ? 'over' : 'side'"
     [name]="'mainNavigation'"
+    [isPostulant]="[2].includes(user?.rol?.id)"
+    [isAdmin]="[1].includes(user?.rol?.id)"
     [navigation]="navigation.default"
     [opened]="!isScreenSmall">
     <!-- Navigation header hook -->

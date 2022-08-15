@@ -15,6 +15,8 @@ export class FuseVerticalNavigationBasicItemComponent implements OnInit, OnDestr
 {
     @Input() item: FuseNavigationItem;
     @Input() name: string;
+    @Input() isPostulant: boolean = false;
+    @Input() isAdmin: boolean = false;
 
     isActiveMatchOptions: IsActiveMatchOptions;
     private _fuseVerticalNavigationComponent: FuseVerticalNavigationComponent;

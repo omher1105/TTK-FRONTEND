@@ -7,19 +7,24 @@ export const defaultItemsNavigations: FuseNavigationItem[] = [
         title: 'Empresa',
         type : 'basic',
         icon : 'heroicons_outline:chart-pie',
-        link : '/empresa'
+        link : '/empresa',
+        isAdmin: true
     },
     {
         id: 'solicitudes',
         title: 'Solicitudes',
         type: 'group',
+        isPostulant: true,
+        isAdmin: true,
         children: [
             {
                 id: 'registrar-solicitud',
                 title: 'Registrar solicitud',
                 type: 'basic',
                 icon: 'heroicons_outline:chart-pie',
-                link: '/solicitud/registrar-solicitud'
+                link: '/solicitud/registrar-solicitud',
+                isPostulant: true,
+                isAdmin: true,
             },
         ]
     },
@@ -27,6 +32,7 @@ export const defaultItemsNavigations: FuseNavigationItem[] = [
         id   : 'rrhh',
         title: 'R.R.H.H.',
         type : 'group',
+        isAdmin: true,
         children: [
             {
                 id   : 'admision',
@@ -34,41 +40,47 @@ export const defaultItemsNavigations: FuseNavigationItem[] = [
                 type : 'collapsable',
                 icon : 'heroicons_outline:chart-pie',
                 link : '/recursos-humanos/admision',
+                isAdmin: true,
                 children: [
                     {
                         id: 'postulaciones',
                         title: 'Postulaciones',
                         type: 'basic',
                         icon: 'heroicons_outline:chart-pie',
-                        link: '/recursos-humanos/admision/postulaciones'
+                        link: '/recursos-humanos/admision/postulaciones',
+                        isAdmin: true,
                     },
                     {
                         id: 'ofertas',
                         title: 'Ofertas',
                         type: 'basic',
                         icon: 'heroicons_outline:chart-pie',
-                        link: '/recursos-humanos/admision/ofertas'
+                        link: '/recursos-humanos/admision/ofertas',
+                        isAdmin: true,
                     },
                     {
                         id: 'entrevistas',
                         title: 'Entrevistas',
                         type: 'basic',
                         icon: 'heroicons_outline:chart-pie',
-                        link: '/recursos-humanos/admision/entrevistas'
+                        link: '/recursos-humanos/admision/entrevistas',
+                        isAdmin: true,
                     },
                     {
                         id: 'examen-medico',
                         title: 'Examen médico',
                         type: 'basic',
                         icon: 'heroicons_outline:chart-pie',
-                        link: '/recursos-humanos/admision/examen-medico'
+                        link: '/recursos-humanos/admision/examen-medico',
+                        isAdmin: true,
                     },
                     {
                         id: 'evaluaciones',
                         title: 'Evaluaciones',
                         type: 'basic',
                         icon: 'heroicons_outline:chart-pie',
-                        link: '/recursos-humanos/admision/evaluaciones'
+                        link: '/recursos-humanos/admision/evaluaciones',
+                        isAdmin: true,
                     },
                 ]
             },
@@ -78,6 +90,7 @@ export const defaultItemsNavigations: FuseNavigationItem[] = [
                 type : 'basic',
                 icon : 'heroicons_outline:chart-pie',
                 link : '/recursos-humanos/personal',
+                isAdmin: true,
             },
         ]
     }

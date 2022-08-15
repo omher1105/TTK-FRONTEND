@@ -22,6 +22,8 @@ export class FuseVerticalNavigationCollapsableItemComponent implements OnInit, O
     @Input() autoCollapse: boolean;
     @Input() item: FuseNavigationItem;
     @Input() name: string;
+    @Input() isPostulant: boolean = false;
+    @Input() isAdmin: boolean = false;
 
     isCollapsed: boolean = true;
     isExpanded: boolean = false;

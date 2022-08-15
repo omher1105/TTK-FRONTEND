@@ -1,20 +1,20 @@
 <div
-    class="fuse-vertical-navigation-item-wrapper"
-    [class.fuse-vertical-navigation-item-has-subtitle]="!!item.subtitle"
-    [ngClass]="item.classes?.wrapper">
+        class="fuse-vertical-navigation-item-wrapper"
+        [class.fuse-vertical-navigation-item-has-subtitle]="!!item.subtitle"
+        [ngClass]="item.classes?.wrapper">
 
     <div
-        class="fuse-vertical-navigation-item"
-        [ngClass]="{'fuse-vertical-navigation-item-disabled': item.disabled}"
-        [matTooltip]="item.tooltip || ''"
-        (click)="toggleCollapsable()">
+            class="fuse-vertical-navigation-item"
+            [ngClass]="{'fuse-vertical-navigation-item-disabled': item.disabled}"
+            [matTooltip]="item.tooltip || ''"
+            (click)="toggleCollapsable()">
 
         <!-- Icon -->
         <ng-container *ngIf="item.icon">
             <mat-icon
-                class="fuse-vertical-navigation-item-icon"
-                [ngClass]="item.classes?.icon"
-                [svgIcon]="item.icon"></mat-icon>
+                    class="fuse-vertical-navigation-item-icon"
+                    [ngClass]="item.classes?.icon"
+                    [svgIcon]="item.icon"></mat-icon>
         </ng-container>
 
         <!-- Title & Subtitle -->
@@ -37,8 +37,8 @@
         <ng-container *ngIf="item.badge">
             <div class="fuse-vertical-navigation-item-badge">
                 <div
-                    class="fuse-vertical-navigation-item-badge-content"
-                    [ngClass]="item.badge.classes">
+                        class="fuse-vertical-navigation-item-badge-content"
+                        [ngClass]="item.badge.classes">
                     {{item.badge.title}}
                 </div>
             </div>
@@ -46,17 +46,17 @@
 
         <!-- Arrow -->
         <mat-icon
-            class="fuse-vertical-navigation-item-arrow icon-size-4"
-            [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                class="fuse-vertical-navigation-item-arrow icon-size-4"
+                [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
 
     </div>
 
 </div>
 
 <div
-    class="fuse-vertical-navigation-item-children"
-    *ngIf="!isCollapsed"
-    @expandCollapse>
+        class="fuse-vertical-navigation-item-children"
+        *ngIf="!isCollapsed"
+        @expandCollapse>
 
     <ng-container *ngFor="let item of item.children; trackBy: trackByFn">
 
@@ -65,38 +65,46 @@
 
             <!-- Basic -->
             <ng-container *ngIf="item.type === 'basic'">
-                <fuse-vertical-navigation-basic-item
-                    [item]="item"
-                    [name]="name"></fuse-vertical-navigation-basic-item>
+                <ng-container *ngIf="isPostulant === item.isPostulant || isAdmin === item.isAdmin">
+                    <fuse-vertical-navigation-basic-item
+                            [item]="item"
+                            [isPostulant]="isPostulant"
+                            [isAdmin]="isAdmin"
+                            [name]="name"></fuse-vertical-navigation-basic-item>
+                </ng-container>
             </ng-container>
 
             <!-- Collapsable -->
             <ng-container *ngIf="item.type === 'collapsable'">
-                <fuse-vertical-navigation-collapsable-item
-                    [item]="item"
-                    [name]="name"
-                    [autoCollapse]="autoCollapse"></fuse-vertical-navigation-collapsable-item>
+                <ng-container *ngIf="isPostulant === item.isPostulant || isAdmin === item.isAdmin">
+                    <fuse-vertical-navigation-collapsable-item
+                            [item]="item"
+                            [name]="name"
+                            [isPostulant]="isPostulant"
+                            [isAdmin]="isAdmin"
+                            [autoCollapse]="autoCollapse"></fuse-vertical-navigation-collapsable-item>
+                </ng-container>
             </ng-container>
 
             <!-- Divider -->
             <ng-container *ngIf="item.type === 'divider'">
                 <fuse-vertical-navigation-divider-item
-                    [item]="item"
-                    [name]="name"></fuse-vertical-navigation-divider-item>
+                        [item]="item"
+                        [name]="name"></fuse-vertical-navigation-divider-item>
             </ng-container>
 
             <!-- Group -->
             <ng-container *ngIf="item.type === 'group'">
                 <fuse-vertical-navigation-group-item
-                    [item]="item"
-                    [name]="name"></fuse-vertical-navigation-group-item>
+                        [item]="item"
+                        [name]="name"></fuse-vertical-navigation-group-item>
             </ng-container>
 
             <!-- Spacer -->
             <ng-container *ngIf="item.type === 'spacer'">
                 <fuse-vertical-navigation-spacer-item
-                    [item]="item"
-                    [name]="name"></fuse-vertical-navigation-spacer-item>
+                        [item]="item"
+                        [name]="name"></fuse-vertical-navigation-spacer-item>
             </ng-container>
 
         </ng-container>
