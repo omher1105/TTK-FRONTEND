@@ -8,7 +8,8 @@ export const defaultItemsNavigations: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:chart-pie',
         link : '/empresa',
-        isAdmin: true
+        isAdmin: true,
+        isPostulant: true,
     },
     {
         id: 'solicitudes',
