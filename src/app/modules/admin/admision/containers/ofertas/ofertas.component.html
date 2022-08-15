@@ -1,5 +1,5 @@
-<article class="flex sm:flex-col md:flex-row lg:flex-row gap-5 w-full">
-    <section class="flex flex-col gap-2">
+<article class="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-5 w-full">
+    <section class="flex flex-col gap-2 w-full md:w-2/12">
         <mat-card class="mat-elevation-z0">
             <mat-card-content>
                 <app-offer-actions></app-offer-actions>
@@ -8,7 +8,7 @@
             </mat-card-content>
         </mat-card>
     </section>
-    <section class="flex flex-col sm:w-full  md:w-10/12">
+    <section class="flex flex-col w-full sm:w-full  md:w-10/12">
         <mat-paginator [length]="count"
                        [pageIndex]="0"
                        [pageSize]="20"
