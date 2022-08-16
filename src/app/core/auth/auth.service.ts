@@ -47,7 +47,7 @@ export class AuthService {
      * @param email
      */
     forgotPassword(email: string): Observable<any> {
-        return this._httpClient.post(environment.apiUrl + 'email-password/send/email', {mailTo: email});
+        return this._httpClient.post(environment.apiUrl + 'password_reset/', {email: email});
     }
 
     /**
