@@ -81,7 +81,7 @@ export class AuthResetPasswordComponent implements OnInit {
         this.showAlert = false;
 
         const payload = this.resetPasswordForm.getRawValue();
-        payload.tokenPassword = this.tokenPassword;
+        payload.token = this.tokenPassword;
 
         // Send the request to the server
         this._authService.resetPassword(payload)

@@ -47,7 +47,7 @@ export const appRoutes: Route[] = [
                     .then(m => m.AuthForgotPasswordModule)
             },
             {
-                path: 'restablecer-contrasenia',
+                path: 'restablecer-contrasena',
                 loadChildren: () => import('app/modules/auth/reset-password/reset-password.module')
                     .then(m => m.AuthResetPasswordModule)
             },

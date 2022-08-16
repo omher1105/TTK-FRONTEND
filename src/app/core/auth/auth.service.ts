@@ -55,8 +55,8 @@ export class AuthService {
      *
      * @param payload
      */
-    resetPassword(payload: { password: string, confirmPassword: string, tokenPassword: string }): Observable<any> {
-        return this._httpClient.post(environment.apiUrl + 'email-password/change-password', payload);
+    resetPassword(payload: { password: string, token: string }): Observable<any> {
+        return this._httpClient.post(environment.apiUrl + 'password_reset/confirm/', payload);
     }
 
     /**
