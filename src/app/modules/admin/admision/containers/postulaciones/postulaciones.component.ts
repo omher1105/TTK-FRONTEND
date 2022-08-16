@@ -14,6 +14,7 @@ import {
 } from '../../components/change-responsabilities/change-responsabilities.component';
 import {CommonService} from '../../../../../shared/services/common.service';
 import {ChangeSubStatusComponent} from '../../components/change-sub-status/change-sub-status.component';
+import {SendCurriculumComponent} from '../../components/send-curriculum/send-curriculum.component';
 
 @Component({
     selector: 'app-postulaciones',
@@ -107,6 +108,21 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
 
     downloadPdf(element): void {
         window.open(element.curriculumFile, '_blank');
+    }
+
+    sendEmail(element): void {
+        const dialogData = {
+            data: {
+                meta: element
+            },
+            width: '30vw',
+            disableClose: true
+        };
+
+        this._messageProviderService.showModal(SendCurriculumComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+            this.changesSubject.next(true);
+        });
     }
 
     ngOnDestroy(): void {

@@ -33,6 +33,10 @@ export class PostulacionesService {
     return this._httpClient.patch<any>(`${this.apiUrl}admision/postulants/${payload.id}/`, payload);
   }
 
+  sendEmail(payload): Observable<any> {
+    return this._httpClient.post<any>(`${this.apiUrl}admision/postulants/${payload.id}/send-cv-to-email/`, payload);
+  }
+
   delete(id: number): Observable<void> {
     return this._httpClient.delete<void>(`${this.apiUrl}admision/postulants/${id}/`);
   }

@@ -30,6 +30,7 @@ import {SharedModule} from '../../../shared/shared.module';
 import { PostulantFiltersComponent } from './components/postulant-filters/postulant-filters.component';
 import { ChangeResponsabilitiesComponent } from './components/change-responsabilities/change-responsabilities.component';
 import { ChangeSubStatusComponent } from './components/change-sub-status/change-sub-status.component';
+import { SendCurriculumComponent } from './components/send-curriculum/send-curriculum.component';
 
 const routes: Routes = [
     {
@@ -85,6 +86,7 @@ const routes: Routes = [
         PostulantFiltersComponent,
         ChangeResponsabilitiesComponent,
         ChangeSubStatusComponent,
+        SendCurriculumComponent,
     ],
     imports: [
         CommonModule,
