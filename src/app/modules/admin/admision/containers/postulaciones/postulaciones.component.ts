@@ -13,6 +13,7 @@ import {
     ChangeResponsabilitiesComponent
 } from '../../components/change-responsabilities/change-responsabilities.component';
 import {CommonService} from '../../../../../shared/services/common.service';
+import {ChangeSubStatusComponent} from '../../components/change-sub-status/change-sub-status.component';
 
 @Component({
     selector: 'app-postulaciones',
@@ -80,6 +81,21 @@ export class PostulacionesComponent implements OnInit, AfterViewInit, OnDestroy 
         };
 
         this._messageProviderService.showModal(ChangeResponsabilitiesComponent, dialogData)
+            .afterClosed().subscribe(_ => {
+            this.changesSubject.next(true);
+        });
+    }
+
+    changeSubStatus(element): void {
+        const dialogData = {
+            data: {
+                meta: element
+            },
+            width: '50vw',
+            disableClose: true
+        };
+
+        this._messageProviderService.showModal(ChangeSubStatusComponent, dialogData)
             .afterClosed().subscribe(_ => {
             this.changesSubject.next(true);
         });

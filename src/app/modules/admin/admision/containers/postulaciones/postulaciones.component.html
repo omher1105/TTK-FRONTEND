@@ -56,6 +56,18 @@
                         <div class="font-light">
                             {{element?.email || '-'}}
                         </div>
+                        <div class="font-bold text-primary-500">
+                            {{(element?.professionDescription || '') + ' - ' + (element?.profesionCompany || '')}}
+                        </div>
+                        <div class="font-bold text-primary-500">
+                            {{(element?.workDescription || '') + ' - ' + (element?.workCompany || '')}}
+                        </div>
+                        <div class="font-light">
+                            {{(element?.workStart || '') + ' - ' + (element?.workEnd || '')}}
+                        </div>
+                        <div class="font-extralight">
+                            {{(element?.workExitDescription || '-')}}
+                        </div>
                     </div>
                 </td>
             </ng-container>
@@ -63,7 +75,17 @@
             <!-- Weight Column -->
             <ng-container matColumnDef="responsable">
                 <th mat-header-cell *matHeaderCellDef class="uppercase text-primary-500"> Responsable</th>
-                <td mat-cell *matCellDef="let element"> {{element?.assigned?.name || '-'}} </td>
+                <td mat-cell *matCellDef="let element">
+                    <div class="font-extrabold">
+                        {{element?.assigned?.name || '-'}}
+                    </div>
+                    <div class="font-light">
+                        {{element?.assigned?.email || '-'}}
+                    </div>
+                    <div class="font-extralight">
+                        {{element?.assigned?.cellphone || '-'}}
+                    </div>
+                </td>
             </ng-container>
 
             <!-- Symbol Column -->
@@ -106,7 +128,8 @@
                                 mat-menu-item>
                             Asignar responsable
                         </button>
-                        <button mat-menu-item>
+                        <button (click)="changeSubStatus(element)"
+                                mat-menu-item>
                             Cambiar sub estado
                         </button>
                         <button mat-menu-item>
